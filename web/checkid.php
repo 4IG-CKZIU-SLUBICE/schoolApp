@@ -29,7 +29,7 @@ require("./nav.php");
                     $surname= $_POST['surname'];
                  
 
-                $conn = new mysqli("192.168.128.105:3306", "myuser", "mypass", "4IG");
+                    require('connect.php');
                 if($conn->connect_error){
                     die("Nie udało nawiązać się połączenia z bazą danych ".$conn->connect_error);
                 }

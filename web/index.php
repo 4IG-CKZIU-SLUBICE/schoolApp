@@ -17,6 +17,19 @@ require("./nav.php");
             <div class="col-md12 text-center content-align-justify">
                 <form action="generate.php" method="post">
                     <h1>WPROWADŹ ODPOWIEDŹ</h1>
+                    WYBIERZ ZADANIE: <select name="idZadania" id="idZadania">
+                        <?php
+                         require('connect.php');
+                         $query = "SELECT ID, CONTENT FROM exercises";
+                         $result = $conn->query($query);
+                         if($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                                echo "<option value='".$row['ID'] ."'>ID ZADANIA: ".$row['ID']." Treść: ".$row['CONTENT']."</option>";
+                            }
+                         }
+                         
+                        ?>
+                    </select><br>
                     <input type="text" class="" name="answer" id="answer" placeholder="Twoja odpowiedź"><br>
                     <input type="number" class="" name="userID" id="userID" placeholder="TWOJE ID"><br>
                     <input type="submit" value="ZATWIERDŹ"  class="SubmitButton">

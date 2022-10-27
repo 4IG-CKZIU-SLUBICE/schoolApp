@@ -1,19 +1,23 @@
 <?php
  if(isset($_POST['userID'])){
     $userID = $_POST['userID'];
-    echo "<p class='userID'>".$userID."</p>";
+    echo "<p class='userID'> ID USERA: ".$userID."</p>";
  }
+ if(isset($_POST['idZadania'])){
+   $idZadania = $_POST['idZadania'];
+   echo "<p class='exerciseID'> ID ZADANIA: ".$idZadania."</p>";
+
+}
  if(isset($_POST['answer'])){
     $answer = $_POST['answer'];
+    echo "<p class='answer'>ODPOWIEDŹ: ".$answer."</p>";
  }
-    $conn = new mysqli("192.168.128.105:3306", "myuser", "mypass", "4IG");
+ require('connect.php');
     if($conn->connect_error){
         die("Nie udało nawiązać się połączenia z bazą danych ".$conn->connect_error);
     }
-    if(isset($_POST['userID']) && isset($_POST['answer'])){
-    $zapytanie = "INSERT INTO USERS_ANSWER VALUE ($userID, '$answer')";
+    $zapytanie = "INSERT INTO users_answer VALUES ($userID, '$answer', $idZadania)";
     $result = $conn->query($zapytanie);
-    }
 ?>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>

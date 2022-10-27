@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,56 +18,11 @@ require("./nav.php");
             <div class="col-md12 text-center content-align-justify">
                 <form action="ocenki.php" method="post">
                     <h1>WPROWADŹ Ocene</h1>
-                    <input type="text" class="" name="grade" id="grade" placeholder="Ocena ucznia"><br>
-                    <input type="number" class="" name="userID" id="userID" placeholder="ID ucznia"><br>
-                    <input type="number" class="" name="exerciseID" id="exerciseID" placeholder="ID zadania"><br>
-                    <input type="submit" value="ZATWIERDŹ"  class="SubmitButton">
-                    <?php
-
-                    $conn = mysqli_connect('192.168.128.105:3306', 'myuser', 'mypass', '4IG');
-
-                    $ocena = $_POST['grade'];
-                    $userid = $_POST['userID'];
-                    $exerciseid = $_POST['exerciseID'];
-
-                    $q = "INSERT INTO results VALUES (NULL, '$exerciseid', '$userid', '$ocena');";
-
-                    
-                    $result = mysqli_query($conn, $q);
-
-
-
-                    if($result != false) {
-                        echo "Dodano ocene!";
-                    }
-
-                    
-                    ?>
+                    <input type="number" class="" name="grade" id="grade" placeholder="Ocena ucznia"><br>
+                    <input type="number" class="" name="userID" id="userID" placeholder="ID UCZNIA"><br>
+                    <input type="number" class="" name="exerciseID" id="exerciseID" placeholder="ID ZADANIA" value=""><br>
+                    <input type="submit" value="DODAJ OCENĘ">
                 </form>
-                <div class="row">
-                    <div class="col-md3"></div>
-                    <div class="col-md-6 align-content-center text-center">
-                <table class="table table-dark">
-                    <thead>
-                        <td>ID</td>
-                        <td>IMIĘ</td>
-                        <td>NAZWISKO</td>
-                    </thead>
-                    <tbody>
-                        <?php
-                            $conn = mysqli_connect('192.168.128.105:3306', 'myuser', 'mypass', '4IG');
-
-
-                            $q2 = "SELECT * FROM users;";
-                            
-                            $result2 = mysqli_query($conn, $q2);
-
-                            while($row = mysqli_fetch_array($result2)) {
-                                echo "<tr><td>".$row['ID']."</td><td>".$row['NAME']."</td><td>".$row['SURNAME']."</td></tr>";
-                            }
-                        ?>
-                    </tbody>
-                </table>
                 </div>
                 </div>
             </div>
