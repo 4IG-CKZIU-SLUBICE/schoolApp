@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if(isset($_SESSION['userID']) && isset( $_SESSION['exerciseID'])){
+    $userID = $_SESSION['userID'];
+    $exerciseID = $_SESSION['exerciseID'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +25,21 @@ require("./nav.php");
                 <form action="ocenki.php" method="post">
                     <h1>WPROWADŹ Ocene</h1>
                     <input type="number" class="" name="grade" id="grade" placeholder="Ocena ucznia"><br>
-                    <input type="number" class="" name="userID" id="userID" placeholder="ID UCZNIA"><br>
-                    <input type="number" class="" name="exerciseID" id="exerciseID" placeholder="ID ZADANIA" value=""><br>
+                    <input type="number" class="" name="userID" id="userID" value="<?= $userID ?>"><br>
+                    <input type="number" class="" name="exerciseID" id="exerciseID"  value="<?= $exerciseID?>"><br>
                     <input type="submit" value="DODAJ OCENĘ">
+                    <?php
+                        require('connect.php');
+
+                        if(isset($_POST['grade']) && isset($_POST['userID']) && isset($_POST['exerciseID'])){
+                            $grade = $_POST['grade'];
+                            $userID = $_POST['userID'];
+                            $exerciseID = $_POST['exerciseID'];
+                            $query = "INSERT INTO `results` (`RESULT_ID`, `EXERCISE_ID`, `USER_ID`, `grade`) VALUES (NULL, '$exerciseID', '$userID', '$grade');";
+                            $conn->query($query);
+                            session_destroy();
+                        }
+                    ?>
                 </form>
                 </div>
                 </div>

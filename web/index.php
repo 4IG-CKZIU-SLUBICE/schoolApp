@@ -14,25 +14,40 @@ require("./nav.php");
 ?>
     <div class="container">
         <div class="row">
-            <div class="col-md12 text-center content-align-justify">
+            <div class=" offset-3 col-md-6 text-center content-align-justify">
                 <form action="generate.php" method="post">
-                    <h1>WPROWADŹ ODPOWIEDŹ</h1>
-                    WYBIERZ ZADANIE: <select name="idZadania" id="idZadania">
-                        <?php
-                         require('connect.php');
-                         $query = "SELECT ID, CONTENT FROM exercises";
-                         $result = $conn->query($query);
-                         if($result->num_rows > 0){
+                <select class="form-select bg-dark text-white" id="exerciseID" name="exerciseID" aria-label="Default select example">
+                    <option value="0">WYBIERZ ZADANIE</option>
+                    <?php
+                        require('connect.php');
+                        $query = "SELECT ID, CONTENT FROM exercises";
+                        $result = $conn->query($query);
+                        if($result->num_rows > 0){
                             while($row = $result->fetch_assoc()){
-                                echo "<option value='".$row['ID'] ."'>ID ZADANIA: ".$row['ID']." Treść: ".$row['CONTENT']."</option>";
+                                echo "<option value='".$row['ID']."'>".$row['CONTENT']."</option>";
                             }
-                         }
-                         
-                        ?>
-                    </select><br>
-                    <input type="text" class="" name="answer" id="answer" placeholder="Twoja odpowiedź"><br>
-                    <input type="number" class="" name="userID" id="userID" placeholder="TWOJE ID"><br>
-                    <input type="submit" value="ZATWIERDŹ"  class="SubmitButton">
+                        }
+                    ?>
+                </select><br>
+
+                   <input type="text" name="answer" id="answer" placeholder="TWOJA ODPOWIEDŹ"><br><br>
+
+                   <select class="form-select bg-dark text-white"  id="userID" name="userID" aria-label="Default select example">
+                    <option >WYBIERZ UŻYTKOWNIKA</option>
+                    <?php
+                        require('connect.php');
+                        $query = "SELECT ID, NAME, SURNAME FROM users";
+                        $result = $conn->query($query);
+                        if($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                                echo "<option value='".$row['ID']."'>".$row['NAME']." ".$row['SURNAME']."</option>";
+                            }
+                        }
+                    ?>
+                </select><br>
+
+                   <input type="submit" value="WPROWADŹ ODPOWIEDŹ">
+
                 </form>
             </div>
            
