@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql-server
--- Czas generowania: 21 Paź 2022, 16:32
--- Wersja serwera: 8.0.19
--- Wersja PHP: 7.4.1
+-- Host: 127.0.0.1
+-- Czas generowania: 27 Paź 2022, 23:38
+-- Wersja serwera: 10.4.21-MariaDB
+-- Wersja PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `4IG`
+-- Baza danych: `4ig`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `exercises` (
-  `ID` int NOT NULL,
+  `ID` int(11) NOT NULL,
   `CONTENT` text NOT NULL,
   `CORRECT_ANSW` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,7 +38,8 @@ CREATE TABLE `exercises` (
 --
 
 INSERT INTO `exercises` (`ID`, `CONTENT`, `CORRECT_ANSW`) VALUES
-(1, 'sdf', 'dsf');
+(1, 'sdf', 'dsf'),
+(2, 'DODAJ UŻYTKOWNIKA DO BAZY DANYCH', 'ADD USER');
 
 -- --------------------------------------------------------
 
@@ -48,10 +48,10 @@ INSERT INTO `exercises` (`ID`, `CONTENT`, `CORRECT_ANSW`) VALUES
 --
 
 CREATE TABLE `results` (
-  `RESULT_ID` int NOT NULL,
-  `EXERCISE_ID` int NOT NULL,
-  `USER_ID` int NOT NULL,
-  `grade` int NOT NULL
+  `RESULT_ID` int(11) NOT NULL,
+  `EXERCISE_ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `grade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -59,31 +59,12 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`RESULT_ID`, `EXERCISE_ID`, `USER_ID`, `grade`) VALUES
-(1, 1, 4, 0),
-(3, 1, 2, 0),
-(4, 1, 1, 0),
-(5, 1, 1, -1442609959),
-(6, 1, 1, 5),
-(7, 1, 1, 4),
-(8, 1, 1, 12),
-(9, 1, 1, 3),
-(10, 1, 1, 6),
-(11, 1, 1, 1),
-(12, 1, 1, 2),
-(13, 1, 1, 2),
-(14, 1, 1, 2),
-(15, 1, 1, 5),
-(17, 1, 1, 3),
-(18, 1, 1, 3),
-(19, 1, 1, 4),
-(20, 1, 1, 5),
-(21, 1, 1, 6),
-(22, 1, 1, 5),
-(23, 1, 1, 5),
-(24, 1, 1, 5),
-(25, 1, 1, 5),
-(26, 1, 1, 5),
-(28, 1, 1, 6);
+(33, 2, 2, 1),
+(34, 2, 2, 1),
+(35, 2, 2, 1),
+(36, 2, 2, 1),
+(37, 2, 2, 1),
+(38, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -92,10 +73,10 @@ INSERT INTO `results` (`RESULT_ID`, `EXERCISE_ID`, `USER_ID`, `grade`) VALUES
 --
 
 CREATE TABLE `users` (
-  `ID` int NOT NULL,
+  `ID` int(11) NOT NULL,
   `NAME` text NOT NULL,
   `SURNAME` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `users`
@@ -110,18 +91,19 @@ INSERT INTO `users` (`ID`, `NAME`, `SURNAME`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `USERS_ANSWER`
+-- Struktura tabeli dla tabeli `users_answer`
 --
 
-CREATE TABLE `USERS_ANSWER` (
-  `USER_ID` int NOT NULL,
-  `USER_ANSWER` text COLLATE utf8_polish_ci NOT NULL
+CREATE TABLE `users_answer` (
+  `USER_ID` int(11) NOT NULL,
+  `USER_ANSWER` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
--- Zrzut danych tabeli `USERS_ANSWER`
+-- Zrzut danych tabeli `users_answer`
 --
 
-INSERT INTO `USERS_ANSWER` (`USER_ID`, `USER_ANSWER`) VALUES
+INSERT INTO `users_answer` (`USER_ID`, `USER_ANSWER`) VALUES
 (1, 'fsefsefse'),
 (1, 'test'),
 (2, 'testowa odpowiedź'),
@@ -172,26 +154,26 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
 -- AUTO_INCREMENT dla tabeli `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `results`
 --
 ALTER TABLE `results`
-  MODIFY `RESULT_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `RESULT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ograniczenia dla zrzutów tabel
