@@ -32,7 +32,7 @@ CREATE TABLE `exercises` (
   `ID` int NOT NULL,
   `CONTENT` text NOT NULL,
   `CORRECT_ANSW` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `exercises`
@@ -52,7 +52,7 @@ CREATE TABLE `results` (
   `EXERCISE_ID` int NOT NULL,
   `USER_ID` int NOT NULL,
   `grade` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `results`
@@ -95,7 +95,7 @@ CREATE TABLE `users` (
   `ID` int NOT NULL,
   `NAME` text NOT NULL,
   `SURNAME` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Zrzut danych tabeli `users`
@@ -116,8 +116,7 @@ INSERT INTO `users` (`ID`, `NAME`, `SURNAME`) VALUES
 CREATE TABLE `USERS_ANSWER` (
   `USER_ID` int NOT NULL,
   `USER_ANSWER` text COLLATE utf8_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Zrzut danych tabeli `USERS_ANSWER`
 --
