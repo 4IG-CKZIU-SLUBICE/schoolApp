@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Paź 2022, 23:38
--- Wersja serwera: 10.4.21-MariaDB
--- Wersja PHP: 8.0.10
+-- Czas generowania: 03 Lis 2022, 12:04
+-- Wersja serwera: 10.4.24-MariaDB
+-- Wersja PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,26 @@ CREATE TABLE `exercises` (
 INSERT INTO `exercises` (`ID`, `CONTENT`, `CORRECT_ANSW`) VALUES
 (1, 'sdf', 'dsf'),
 (2, 'DODAJ UŻYTKOWNIKA DO BAZY DANYCH', 'ADD USER');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `last_user`
+--
+
+CREATE TABLE `last_user` (
+  `userID` int(11) NOT NULL,
+  `exerciseID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `last_user`
+--
+
+INSERT INTO `last_user` (`userID`, `exerciseID`, `ID`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -140,6 +160,14 @@ ALTER TABLE `exercises`
   ADD UNIQUE KEY `CORRECT_ANSW` (`CORRECT_ANSW`(768)) USING BTREE;
 
 --
+-- Indeksy dla tabeli `last_user`
+--
+ALTER TABLE `last_user`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `exerciseID` (`exerciseID`);
+
+--
 -- Indeksy dla tabeli `results`
 --
 ALTER TABLE `results`
@@ -164,6 +192,12 @@ ALTER TABLE `exercises`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT dla tabeli `last_user`
+--
+ALTER TABLE `last_user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT dla tabeli `results`
 --
 ALTER TABLE `results`
@@ -178,6 +212,13 @@ ALTER TABLE `users`
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `last_user`
+--
+ALTER TABLE `last_user`
+  ADD CONSTRAINT `last_user_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`ID`),
+  ADD CONSTRAINT `last_user_ibfk_2` FOREIGN KEY (`exerciseID`) REFERENCES `exercises` (`ID`);
 
 --
 -- Ograniczenia dla tabeli `results`
