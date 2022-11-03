@@ -5,6 +5,9 @@ echo "ID UŻYTKOWNIKA TO: ".$userID. " ID ZADANIA: ".$_POST['exerciseID']." ODPO
 session_start();
 $_SESSION['userID'] = $userID;
 $_SESSION['exerciseID'] = $exerciseID;
+require("connect.php");
+$query = "INSERT INTO last_user VALUES($userID, $exerciseID, NULL)";
+$conn->query($query);
 ?>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>

@@ -1,8 +1,18 @@
 <?php
 session_start();
-if(isset($_SESSION['userID']) && isset( $_SESSION['exerciseID'])){
-    $userID = $_SESSION['userID'];
-    $exerciseID = $_SESSION['exerciseID'];
+// if(isset($_SESSION['userID']) && isset( $_SESSION['exerciseID'])){
+//     $userID = $_SESSION['userID'];
+//     $exerciseID = $_SESSION['exerciseID'];
+// }
+
+require('connect.php');
+$query = "SELECT userID, exerciseID, ID FROM last_user ORDER BY ID DESC  LIMIT 1";
+$result = $conn->query($query);
+if(!empty($result) && $result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        $userID = $row['userID'];
+        $exerciseID = $row['exerciseID'];
+    }
 }
 ?>
 <!DOCTYPE html>
